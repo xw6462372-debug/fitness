@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小小麻辣烫减脂塑形计划</title>
+<style>
+  /* Hallmark · component: tool-page restyle · genre: modern-minimal · macrostructure: n/a (redesign, single-page tool)
+   * theme: custom (vibe: "干净简约 清新薄荷" · paper oklch(98.5% 0.008 170) · accent oklch(56% 0.11 170) teal-green · system CJK sans)
+   * pre-emit critique: P4 H4 E4 S4 R5 V4 */
+  :root {
+    --color-paper: oklch(98.5% 0.008 170);
+    --color-card: oklch(100% 0 0);
+    --color-paper-2: oklch(96.5% 0.01 170);
+    --color-ink: oklch(28% 0.02 170);
+    --color-ink-2: oklch(50% 0.02 170);
+    --color-muted: oklch(65% 0.015 170);
+    --color-rule: oklch(92% 0.012 170);
+    --color-accent: oklch(56% 0.11 170);
+    --color-accent-deep: oklch(42% 0.09 170);
+    --color-accent-tint: oklch(95.5% 0.035 170);
+    --color-warn-tint: oklch(96% 0.035 85);
+    --color-warn-ink: oklch(45% 0.09 70);
+    --color-info-tint: oklch(95.5% 0.025 235);
+    --color-info-ink: oklch(44% 0.08 245);
+    --color-danger: oklch(52% 0.16 25);
+    --color-focus: oklch(52% 0.15 245);
+    --font-body: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px; --space-lg: 24px; --space-xl: 32px;
+    --radius-card: 16px; --radius-input: 10px; --radius-pill: 999px;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --dur-short: 160ms;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { overflow-x: clip; }
+  body { font-family: var(--font-body); background: var(--color-paper); color: var(--color-ink); padding: var(--space-md); max-width: 720px; margin: 0 auto; line-height: 1.5; }
+  button { font-family: inherit; }
+  :focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+  .header { background: var(--color-card); border: 1px solid var(--color-rule); border-radius: var(--radius-card); padding: var(--space-lg); margin-bottom: var(--space-sm); }
+  .header h1 { font-size: 21px; font-weight: 650; letter-spacing: -0.01em; }
+  .header h1::after { content: ""; display: block; width: 28px; height: 3px; border-radius: 2px; background: var(--color-accent); margin-top: var(--space-xs); }
+  .header p { font-size: 13px; color: var(--color-ink-2); margin-top: var(--space-sm); line-height: 1.7; }
+  .badges { display: flex; gap: var(--space-xs); margin-top: var(--space-sm); flex-wrap: wrap; }
+  .badge { background: var(--color-paper-2); color: var(--color-ink-2); border-radius: var(--radius-pill); padding: 5px 14px; font-size: 12px; font-weight: 500; }
+  .badge.green { background: var(--color-accent-tint); color: var(--color-accent-deep); }
+  .tabs { display: flex; gap: var(--space-2xs); margin-bottom: var(--space-sm); background: var(--color-paper-2); border-radius: var(--radius-input); padding: var(--space-2xs); }
+  .tab { flex: 1; border: 1px solid transparent; border-radius: 8px; padding: 10px 4px; font-size: 14px; font-weight: 600; background: transparent; color: var(--color-muted); cursor: pointer; transition: background var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out); }
+  .tab.on { background: var(--color-card); border-color: var(--color-rule); color: var(--color-ink); }
+  .tab span { color: var(--color-muted); font-weight: 400; }
+  .tab.on span { color: var(--color-accent-deep); }
+  .card { background: var(--color-card); border: 1px solid var(--color-rule); border-radius: var(--radius-card); padding: var(--space-md); margin-bottom: var(--space-sm); }
+  .card h2 { font-size: 17px; font-weight: 650; }
+  .card .sub { font-size: 12px; color: var(--color-ink-2); margin: var(--space-2xs) 0 var(--space-sm); }
+  .ex { border-top: 1px solid var(--color-rule); padding: var(--space-sm) 0; }
+  .ex-head { display: flex; justify-content: space-between; align-items: center; }
+  .ex-name { font-size: 14px; font-weight: 500; }
+  .ex-name .star { color: var(--color-accent-deep); font-size: 12px; font-weight: 600; }
+  .ex-sets { font-size: 13px; color: var(--color-muted); font-variant-numeric: tabular-nums; }
+  .inputs { display: flex; gap: var(--space-2xs); margin-top: var(--space-xs); align-items: center; }
+  .inputs input { width: 0; flex: 1; min-width: 40px; padding: 9px 6px; border: 1px solid var(--color-rule); border-radius: var(--radius-input); font-size: 14px; text-align: center; background: var(--color-card); color: var(--color-ink); }
+  .inputs input:focus { outline: 2px solid var(--color-focus); outline-offset: 0; border-color: transparent; }
+  .inputs .x { color: var(--color-muted); font-size: 12px; }
+  .done-btn { border: 1px solid var(--color-rule); background: var(--color-card); border-radius: var(--radius-input); padding: 8px 12px; font-size: 13px; cursor: pointer; color: var(--color-ink-2); white-space: nowrap; transition: background var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out); }
+  .done-btn:hover { background: var(--color-paper-2); }
+  .done-btn.on { background: var(--color-accent); border-color: var(--color-accent); color: oklch(100% 0 0); }
+  .note { background: var(--color-paper-2); border-radius: var(--radius-input); padding: var(--space-sm); font-size: 12px; color: var(--color-ink-2); margin-top: var(--space-sm); line-height: 1.7; }
+  .save-bar { display: flex; gap: var(--space-sm); align-items: center; margin-top: var(--space-sm); }
+  .save-btn { flex: 1; background: var(--color-accent); color: oklch(100% 0 0); border: none; border-radius: var(--radius-input); padding: 13px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background var(--dur-short) var(--ease-out); }
+  .save-btn:hover { background: var(--color-accent-deep); }
+  .save-btn:active { transform: translateY(1px); }
+  .saved-tip { font-size: 13px; color: var(--color-accent-deep); display: none; }
+  .last { font-size: 12px; color: var(--color-muted); margin-top: var(--space-2xs); font-variant-numeric: tabular-nums; }
+  .section-title { font-size: 15px; font-weight: 650; margin: var(--space-lg) 0 var(--space-sm); }
+  .bw-row { display: flex; gap: var(--space-xs); }
+  .bw-row input { flex: 1; min-width: 0; padding: 10px; border: 1px solid var(--color-rule); border-radius: var(--radius-input); font-size: 15px; background: var(--color-card); color: var(--color-ink); }
+  .bw-row button { background: var(--color-accent); color: oklch(100% 0 0); border: none; border-radius: var(--radius-input); padding: 0 18px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background var(--dur-short) var(--ease-out); }
+  .bw-row button:hover { background: var(--color-accent-deep); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: var(--space-sm); font-variant-numeric: tabular-nums; }
+  th { text-align: left; color: var(--color-muted); font-weight: 500; padding: 6px 4px; border-bottom: 1px solid var(--color-rule); }
+  td { padding: 7px 4px; border-bottom: 1px solid var(--color-paper-2); }
+  .trend { font-size: 13px; padding: var(--space-sm); border-radius: var(--radius-input); margin-top: var(--space-sm); line-height: 1.7; }
+  .trend.good { background: var(--color-accent-tint); color: var(--color-accent-deep); }
+  .trend.warn { background: var(--color-warn-tint); color: var(--color-warn-ink); }
+  .trend.info { background: var(--color-info-tint); color: var(--color-info-ink); }
+  .del { color: var(--color-danger); cursor: pointer; font-size: 12px; }
+  .footer { font-size: 12px; color: var(--color-muted); text-align: center; margin: var(--space-lg) 0 var(--space-sm); line-height: 1.8; }
+  .hist-day { font-size: 13px; margin-top: var(--space-xs); padding: var(--space-sm); background: var(--color-paper-2); border-radius: var(--radius-input); }
+  .hist-day b { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .hist-day .d { color: var(--color-ink-2); font-size: 12px; }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>小小麻辣烫减脂塑形计划</h1>
+  <p>目标：减脂改善胸部轮廓 + 保留胸肌｜力量训练后爬坡</p>
+  <div class="badges">
+    <span class="badge">当前 约 86 kg</span>
+    <span class="badge green">阶段目标 80 kg</span>
+    <span class="badge" id="today-badge"></span>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab t1 on" onclick="showDay(0)">第 1 天<br><span style="font-size:11px;font-weight:400">胸肩三头</span></button>
+  <button class="tab t2" onclick="showDay(1)">第 2 天<br><span style="font-size:11px;font-weight:400">背二头</span></button>
+  <button class="tab t3" onclick="showDay(2)">第 3 天<br><span style="font-size:11px;font-weight:400">腿+胸补充</span></button>
+</div>
+
+<div id="day-area"></div>
+
+<div class="card">
+  <div class="section-title" style="margin-top:0">体重记录</div>
+  <div class="bw-row">
+    <input type="date" id="bw-date">
+    <input type="number" id="bw-kg" step="0.1" placeholder="体重 kg" inputmode="decimal">
+    <button onclick="addWeight()">记录</button>
+  </div>
+  <div id="bw-trend"></div>
+  <table id="bw-table"></table>
+</div>
+
+<div class="card">
+  <div class="section-title" style="margin-top:0">训练历史</div>
+  <div id="history"></div>
+</div>
+
+<div class="card">
+  <div class="section-title" style="margin-top:0">数据备份</div>
+  <div style="display:flex; gap:8px;">
+    <button class="done-btn" style="flex:1; padding:12px;" onclick="exportData()">导出备份</button>
+    <button class="done-btn" style="flex:1; padding:12px;" onclick="document.getElementById('imp-file').click()">导入备份</button>
+    <input type="file" id="imp-file" accept=".json" style="display:none" onchange="importData(this)">
+  </div>
+  <div class="last" style="margin-top:8px" id="backup-tip">导出会下载一个 JSON 文件，换设备或换浏览器时导入即可恢复全部记录。</div>
+</div>
+
+<div class="footer">
+  减重期卧推/上斜力量持平 = 掉的是脂肪，胸肌保住了<br>
+  胸的变化常在减脂后半程集中出现，别提前换计划<br>
+  非训练日步数 8000–10000｜每 2–4 周量胸围+腰围<br>
+  数据保存在本浏览器中，换设备/清缓存会丢失
+</div>
+
+<script>
+const PLAN = [
+  { name: '胸 + 肩 + 三头', sub: '胸部重点日｜上斜首发｜每组 RIR 1–2', note: '训练后爬坡 30 分钟｜夹胸：3 秒离心 + 顶峰停 1 秒', ex: [
+    { n: '上斜哑铃卧推', s: '4×8–12', star: '★首发', log: true },
+    { n: '杠铃卧推', s: '4×6–10', log: true },
+    { n: '蝴蝶机夹胸', s: '3×12–15', log: true },
+    { n: '哑铃肩推', s: '3×8–12', log: true },
+    { n: '侧平举', s: '3×15', log: false },
+    { n: '三头下压', s: '3×10–15', log: false } ] },
+  { name: '背 + 二头', sub: '宽度 + 厚度｜面拉护肩', note: '训练后爬坡 30 分钟｜背练好体态挺，胸看起来更平', ex: [
+    { n: '引体向上 / 高位下拉', s: '4 组', log: true },
+    { n: '高位下拉', s: '4 组', log: true },
+    { n: '杠铃划船', s: '4 组', log: true },
+    { n: '龙门架坐姿划船', s: '3 组', log: false },
+    { n: '面拉 Face Pull', s: '3 组', log: false },
+    { n: '二头弯举', s: '3 组', log: false } ] },
+  { name: '腿 + 胸补充', sub: '大肌群消耗｜末尾加练胸', note: '训练后爬坡 30 分钟｜胸第二练：轻重量高质量，做到接近力竭', ex: [
+    { n: '杠铃深蹲', s: '4 组', log: true },
+    { n: '罗马尼亚硬拉', s: '4 组', log: true },
+    { n: '腿屈伸', s: '3 组', log: false },
+    { n: '腿弯举', s: '3 组', log: false },
+    { n: '提踵', s: '3 组', log: false },
+    { n: '上斜卧推 / 俯卧撑', s: '3×近力竭', star: '★新增', log: true } ] }
+];
+let cur = 0;
+const store = k => JSON.parse(localStorage.getItem(k) || '{}');
+const put = (k, v) => localStorage.setItem(k, JSON.stringify(v));
+const todayStr = () => new Date().toISOString().slice(0, 10);
+document.getElementById('today-badge').textContent = todayStr();
+
+function lastLog(di, ei) {
+  const logs = store('logs');
+  const dates = Object.keys(logs).sort().reverse();
+  for (const d of dates) {
+    const rec = logs[d] && logs[d][di] && logs[d][di][ei];
+    if (rec && (rec.w || rec.r)) return { d, ...rec };
+  }
+  return null;
+}
+
+function showDay(i) {
+  cur = i;
+  document.querySelectorAll('.tab').forEach((t, j) => t.classList.toggle('on', j === i));
+  const p = PLAN[i];
+  const logs = store('logs');
+  const today = (logs[todayStr()] || {})[i] || {};
+  let h = '<div class="card"><h2>' + p.name + '</h2><div class="sub">' + p.sub + '</div>';
+  p.ex.forEach((e, ei) => {
+    const rec = today[ei] || {};
+    const prev = lastLog(i, ei);
+    h += '<div class="ex"><div class="ex-head"><span class="ex-name">' + e.n + (e.star ? ' <span class="star">' + e.star + '</span>' : '') + '</span><span class="ex-sets">' + e.s + '</span></div>';
+    if (e.log) {
+      h += '<div class="inputs"><input type="number" step="0.5" inputmode="decimal" placeholder="重量kg" id="w-' + ei + '" value="' + (rec.w || '') + '"><span class="x">×</span><input type="number" inputmode="numeric" placeholder="次数" id="r-' + ei + '" value="' + (rec.r || '') + '">'
+        + '<button class="done-btn ' + (rec.done ? 'on' : '') + '" id="d-' + ei + '" onclick="toggleDone(' + ei + ')">' + (rec.done ? '已完成' : '完成') + '</button></div>';
+      if (prev) h += '<div class="last">上次（' + prev.d.slice(5) + '）：' + (prev.w || '—') + ' kg × ' + (prev.r || '—') + ' 次</div>';
+    } else {
+      h += '<div class="inputs"><button class="done-btn ' + (rec.done ? 'on' : '') + '" id="d-' + ei + '" onclick="toggleDone(' + ei + ')" style="flex:1">' + (rec.done ? '已完成' : '完成') + '</button></div>';
+    }
+    h += '</div>';
+  });
+  h += '<div class="note">' + p.note + '</div>';
+  h += '<div class="save-bar"><button class="save-btn" onclick="saveDay()">保存今天的训练</button><span class="saved-tip" id="tip">已保存</span></div></div>';
+  document.getElementById('day-area').innerHTML = h;
+}
+
+function toggleDone(ei) {
+  const b = document.getElementById('d-' + ei);
+  b.classList.toggle('on');
+  b.textContent = b.classList.contains('on') ? '已完成' : '完成';
+}
+
+function saveDay() {
+  const logs = store('logs');
+  const d = todayStr();
+  logs[d] = logs[d] || {};
+  const rec = {};
+  PLAN[cur].ex.forEach((e, ei) => {
+    const w = document.getElementById('w-' + ei);
+    const r = document.getElementById('r-' + ei);
+    rec[ei] = { w: w ? w.value : '', r: r ? r.value : '', done: document.getElementById('d-' + ei).classList.contains('on') };
+  });
+  logs[d][cur] = rec;
+  put('logs', logs);
+  const tip = document.getElementById('tip');
+  tip.style.display = 'inline';
+  setTimeout(() => tip.style.display = 'none', 2000);
+  renderHistory();
+}
+
+function addWeight() {
+  const d = document.getElementById('bw-date').value || todayStr();
+  const kg = parseFloat(document.getElementById('bw-kg').value);
+  if (!kg || kg < 30 || kg > 200) return;
+  const bw = store('bw');
+  bw[d] = kg;
+  put('bw', bw);
+  document.getElementById('bw-kg').value = '';
+  renderWeights();
+}
+
+function delWeight(d) { const bw = store('bw'); delete bw[d]; put('bw', bw); renderWeights(); }
+
+function weekAvg(entries, offsetDays) {
+  const now = new Date(todayStr());
+  const vals = entries.filter(([d]) => {
+    const diff = (now - new Date(d)) / 86400000;
+    return diff >= offsetDays && diff < offsetDays + 7;
+  }).map(([, v]) => v);
+  return vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : null;
+}
+
+function renderWeights() {
+  const bw = store('bw');
+  const entries = Object.entries(bw).sort((a, b) => b[0] < a[0] ? -1 : 1);
+  const tbl = document.getElementById('bw-table');
+  if (!entries.length) { tbl.innerHTML = ''; document.getElementById('bw-trend').innerHTML = '<div class="trend info">每天早上空腹称重，看周平均值而不是单日数字。</div>'; return; }
+  let h = '<tr><th>日期</th><th>体重</th><th></th></tr>';
+  entries.slice(0, 14).forEach(([d, v]) => {
+    h += '<tr><td>' + d + '</td><td>' + v.toFixed(1) + ' kg</td><td><span class="del" onclick="delWeight(\'' + d + '\')">删除</span></td></tr>';
+  });
+  tbl.innerHTML = h;
+  const thisW = weekAvg(entries, 0), lastW = weekAvg(entries, 7);
+  const el = document.getElementById('bw-trend');
+  if (thisW && lastW) {
+    const diff = thisW - lastW;
+    if (diff <= -0.3 && diff >= -0.9) el.innerHTML = '<div class="trend good">本周均值 ' + thisW.toFixed(1) + ' kg，比上周降 ' + Math.abs(diff).toFixed(1) + ' kg——速度正好，保持当前吃法。</div>';
+    else if (diff > -0.3 && diff < 0.2) el.innerHTML = '<div class="trend warn">本周均值 ' + thisW.toFixed(1) + ' kg，与上周基本持平。若连续两周不动，晚餐碳水减 1/3。</div>';
+    else if (diff < -0.9) el.innerHTML = '<div class="trend warn">本周均值 ' + thisW.toFixed(1) + ' kg，降幅偏快（' + Math.abs(diff).toFixed(1) + ' kg/周），注意力量是否下滑，适当多吃一点蛋白质。</div>';
+    else el.innerHTML = '<div class="trend warn">本周均值 ' + thisW.toFixed(1) + ' kg，比上周升 ' + diff.toFixed(1) + ' kg。回顾一下隐形热量。</div>';
+  } else {
+    el.innerHTML = '<div class="trend info">本周均值 ' + (thisW ? thisW.toFixed(1) + ' kg' : '—') + '。记满两周后自动对比趋势。</div>';
+  }
+}
+
+function renderHistory() {
+  const logs = store('logs');
+  const dates = Object.keys(logs).sort().reverse().slice(0, 10);
+  const el = document.getElementById('history');
+  if (!dates.length) { el.innerHTML = '<div class="trend info">保存训练后，这里会显示每天的记录，方便对比上次重量。</div>'; return; }
+  let h = '';
+  dates.forEach(d => {
+    Object.entries(logs[d]).forEach(([di, rec]) => {
+      const p = PLAN[di];
+      const items = Object.entries(rec).filter(([, r]) => r.w || r.r).map(([ei, r]) => p.ex[ei].n + ' ' + (r.w || '—') + 'kg×' + (r.r || '—')).join('｜');
+      const doneCount = Object.values(rec).filter(r => r.done).length;
+      h += '<div class="hist-day"><b>' + d + '</b> <span class="d">' + p.name + '（完成 ' + doneCount + '/' + p.ex.length + '）</span>' + (items ? '<br>' + items : '') + '</div>';
+    });
+  });
+  el.innerHTML = h;
+}
+
+function exportData() {
+  const data = { version: 1, exported: new Date().toISOString(), logs: store('logs'), bw: store('bw') };
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = '训练记录备份-' + todayStr() + '.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function importData(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const data = JSON.parse(reader.result);
+      if (!data.logs && !data.bw) throw new Error('格式不对');
+      const logs = store('logs'), bw = store('bw');
+      Object.entries(data.logs || {}).forEach(([d, days]) => { logs[d] = Object.assign(logs[d] || {}, days); });
+      Object.assign(bw, data.bw || {});
+      put('logs', logs); put('bw', bw);
+      showDay(cur); renderWeights(); renderHistory();
+      document.getElementById('backup-tip').textContent = '导入成功，已与现有记录合并。';
+    } catch (e) {
+      document.getElementById('backup-tip').textContent = '导入失败：文件不是有效的备份。';
+    }
+    input.value = '';
+  };
+  reader.readAsText(file);
+}
+
+document.getElementById('bw-date').value = todayStr();
+showDay(0);
+renderWeights();
+renderHistory();
+</script>
+</body>
+</html>
