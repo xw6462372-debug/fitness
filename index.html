@@ -139,7 +139,7 @@
   <div class="section-title" style="margin-top:0">体重记录</div>
   <div class="bw-row">
     <input type="date" id="bw-date">
-    <input type="number" id="bw-kg" step="0.1" placeholder="体重 kg" inputmode="decimal">
+    <input type="number" id="bw-kg" step="0.01" placeholder="体重 kg" inputmode="decimal">
     <button onclick="addWeight()">记录</button>
   </div>
   <div id="bw-trend"></div>
@@ -285,19 +285,19 @@ function renderWeights() {
   if (!entries.length) { tbl.innerHTML = ''; document.getElementById('bw-trend').innerHTML = '<div class="trend info">每天早上空腹称重，看周平均值而不是单日数字。</div>'; return; }
   let h = '<tr><th>日期</th><th>体重</th><th></th></tr>';
   entries.slice(0, 14).forEach(([d, v]) => {
-    h += '<tr><td>' + d + '</td><td>' + v.toFixed(1) + ' kg</td><td><span class="del" onclick="delWeight(\'' + d + '\')">删除</span></td></tr>';
+    h += '<tr><td>' + d + '</td><td>' + v.toFixed(2) + ' kg</td><td><span class="del" onclick="delWeight(\'' + d + '\')">删除</span></td></tr>';
   });
   tbl.innerHTML = h;
   const thisW = weekAvg(entries, 0), lastW = weekAvg(entries, 7);
   const el = document.getElementById('bw-trend');
   if (thisW && lastW) {
     const diff = thisW - lastW;
-    if (diff <= -0.3 && diff >= -0.9) el.innerHTML = '<div class="trend good">本周均值 ' + thisW.toFixed(1) + ' kg，比上周降 ' + Math.abs(diff).toFixed(1) + ' kg——速度正好，保持当前吃法。</div>';
-    else if (diff > -0.3 && diff < 0.2) el.innerHTML = '<div class="trend warn">本周均值 ' + thisW.toFixed(1) + ' kg，与上周基本持平。若连续两周不动，晚餐碳水减 1/3。</div>';
-    else if (diff < -0.9) el.innerHTML = '<div class="trend warn">本周均值 ' + thisW.toFixed(1) + ' kg，降幅偏快（' + Math.abs(diff).toFixed(1) + ' kg/周），注意力量是否下滑，适当多吃一点蛋白质。</div>';
-    else el.innerHTML = '<div class="trend warn">本周均值 ' + thisW.toFixed(1) + ' kg，比上周升 ' + diff.toFixed(1) + ' kg。回顾一下隐形热量。</div>';
+    if (diff <= -0.3 && diff >= -0.9) el.innerHTML = '<div class="trend good">本周均值 ' + thisW.toFixed(2) + ' kg，比上周降 ' + Math.abs(diff).toFixed(2) + ' kg——速度正好，保持当前吃法。</div>';
+    else if (diff > -0.3 && diff < 0.2) el.innerHTML = '<div class="trend warn">本周均值 ' + thisW.toFixed(2) + ' kg，与上周基本持平。若连续两周不动，晚餐碳水减 1/3。</div>';
+    else if (diff < -0.9) el.innerHTML = '<div class="trend warn">本周均值 ' + thisW.toFixed(2) + ' kg，降幅偏快（' + Math.abs(diff).toFixed(2) + ' kg/周），注意力量是否下滑，适当多吃一点蛋白质。</div>';
+    else el.innerHTML = '<div class="trend warn">本周均值 ' + thisW.toFixed(2) + ' kg，比上周升 ' + diff.toFixed(2) + ' kg。回顾一下隐形热量。</div>';
   } else {
-    el.innerHTML = '<div class="trend info">本周均值 ' + (thisW ? thisW.toFixed(1) + ' kg' : '—') + '。记满两周后自动对比趋势。</div>';
+    el.innerHTML = '<div class="trend info">本周均值 ' + (thisW ? thisW.toFixed(2) + ' kg' : '—') + '。记满两周后自动对比趋势。</div>';
   }
 }
 
