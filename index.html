@@ -6,86 +6,109 @@
 <title>小小麻辣烫减脂塑形计划</title>
 <style>
   /* Hallmark · component: tool-page restyle · genre: modern-minimal · macrostructure: n/a (redesign, single-page tool)
-   * theme: custom (vibe: "干净简约 清新薄荷" · paper oklch(98.5% 0.008 170) · accent oklch(56% 0.11 170) teal-green · system CJK sans)
-   * pre-emit critique: P4 H4 E4 S4 R5 V4 */
+   * theme: studied-DNA (source: image, designer concept reference — DNA only, no pixel copy)
+   * paper light oklch(96.5% 0.006 95) / dark oklch(13% 0 0) · accent electric yellow oklch(90% 0.19 105), on-accent near-black
+   * shape: pill controls + 24px cards · type: system geometric sans, weight-led hierarchy · studied: yes
+   * pre-emit critique: P4 H5 E4 S4 R4 V5 */
   :root {
-    --color-paper: oklch(98.5% 0.008 170);
-    --color-card: oklch(100% 0 0);
-    --color-paper-2: oklch(96.5% 0.01 170);
-    --color-ink: oklch(28% 0.02 170);
-    --color-ink-2: oklch(50% 0.02 170);
-    --color-muted: oklch(65% 0.015 170);
-    --color-rule: oklch(92% 0.012 170);
-    --color-accent: oklch(56% 0.11 170);
-    --color-accent-deep: oklch(42% 0.09 170);
-    --color-accent-tint: oklch(95.5% 0.035 170);
-    --color-warn-tint: oklch(96% 0.035 85);
-    --color-warn-ink: oklch(45% 0.09 70);
-    --color-info-tint: oklch(95.5% 0.025 235);
-    --color-info-ink: oklch(44% 0.08 245);
+    color-scheme: light dark;
+    --color-paper: oklch(96.5% 0.006 95);
+    --color-card: oklch(99.5% 0 0);
+    --color-paper-2: oklch(93% 0.008 95);
+    --color-ink: oklch(17% 0.005 95);
+    --color-ink-2: oklch(45% 0.01 95);
+    --color-muted: oklch(60% 0.01 95);
+    --color-rule: oklch(90% 0.008 95);
+    --color-accent: oklch(90% 0.19 105);
+    --color-on-accent: oklch(17% 0.005 95);
+    --color-accent-tint: oklch(96% 0.07 105);
+    --color-pill: oklch(17% 0.005 95);
+    --color-on-pill: oklch(99.5% 0 0);
+    --color-warn-tint: oklch(95% 0.04 70);
+    --color-warn-ink: oklch(45% 0.1 60);
     --color-danger: oklch(52% 0.16 25);
     --color-focus: oklch(52% 0.15 245);
     --font-body: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
     --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px; --space-lg: 24px; --space-xl: 32px;
-    --radius-card: 16px; --radius-input: 10px; --radius-pill: 999px;
+    --radius-card: 24px; --radius-input: 999px; --radius-pill: 999px;
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     --dur-short: 160ms;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-paper: oklch(13% 0 0);
+      --color-card: oklch(19% 0.004 95);
+      --color-paper-2: oklch(24% 0.005 95);
+      --color-ink: oklch(96% 0 0);
+      --color-ink-2: oklch(72% 0.005 95);
+      --color-muted: oklch(56% 0.005 95);
+      --color-rule: oklch(29% 0.005 95);
+      --color-accent: oklch(90% 0.19 105);
+      --color-on-accent: oklch(15% 0.005 95);
+      --color-accent-tint: oklch(28% 0.05 105);
+      --color-pill: oklch(96% 0 0);
+      --color-on-pill: oklch(15% 0.005 95);
+      --color-warn-tint: oklch(27% 0.05 70);
+      --color-warn-ink: oklch(85% 0.1 80);
+      --color-danger: oklch(65% 0.18 25);
+      --color-focus: oklch(75% 0.12 245);
+    }
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { overflow-x: clip; }
   body { font-family: var(--font-body); background: var(--color-paper); color: var(--color-ink); padding: var(--space-md); max-width: 720px; margin: 0 auto; line-height: 1.5; }
   button { font-family: inherit; }
   :focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
-  .header { background: var(--color-card); border: 1px solid var(--color-rule); border-radius: var(--radius-card); padding: var(--space-lg); margin-bottom: var(--space-sm); }
-  .header h1 { font-size: 21px; font-weight: 650; letter-spacing: -0.01em; }
-  .header h1::after { content: ""; display: block; width: 28px; height: 3px; border-radius: 2px; background: var(--color-accent); margin-top: var(--space-xs); }
+  .header { background: var(--color-card); border-radius: var(--radius-card); padding: var(--space-lg); margin-bottom: var(--space-sm); }
+  .header h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; }
+  .header h1::after { content: ""; display: block; width: 40px; height: 5px; border-radius: 3px; background: var(--color-accent); margin-top: var(--space-sm); }
   .header p { font-size: 13px; color: var(--color-ink-2); margin-top: var(--space-sm); line-height: 1.7; }
-  .badges { display: flex; gap: var(--space-xs); margin-top: var(--space-sm); flex-wrap: wrap; }
-  .badge { background: var(--color-paper-2); color: var(--color-ink-2); border-radius: var(--radius-pill); padding: 5px 14px; font-size: 12px; font-weight: 500; }
-  .badge.green { background: var(--color-accent-tint); color: var(--color-accent-deep); }
-  .tabs { display: flex; gap: var(--space-2xs); margin-bottom: var(--space-sm); background: var(--color-paper-2); border-radius: var(--radius-input); padding: var(--space-2xs); }
-  .tab { flex: 1; border: 1px solid transparent; border-radius: 8px; padding: 10px 4px; font-size: 14px; font-weight: 600; background: transparent; color: var(--color-muted); cursor: pointer; transition: background var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out); }
-  .tab.on { background: var(--color-card); border-color: var(--color-rule); color: var(--color-ink); }
+  .badges { display: flex; gap: var(--space-xs); margin-top: var(--space-md); flex-wrap: wrap; }
+  .badge { background: var(--color-paper-2); color: var(--color-ink-2); border-radius: var(--radius-pill); padding: 7px 16px; font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .badge.green { background: var(--color-accent); color: var(--color-on-accent); }
+  .tabs { display: flex; gap: var(--space-2xs); margin-bottom: var(--space-sm); background: var(--color-card); border-radius: var(--radius-pill); padding: 5px; }
+  .tab { flex: 1; border: none; border-radius: var(--radius-pill); padding: 11px 4px; font-size: 14px; font-weight: 700; background: transparent; color: var(--color-muted); cursor: pointer; transition: background var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out); }
+  .tab.on { background: var(--color-accent); color: var(--color-on-accent); }
   .tab span { color: var(--color-muted); font-weight: 400; }
-  .tab.on span { color: var(--color-accent-deep); }
-  .card { background: var(--color-card); border: 1px solid var(--color-rule); border-radius: var(--radius-card); padding: var(--space-md); margin-bottom: var(--space-sm); }
-  .card h2 { font-size: 17px; font-weight: 650; }
+  .tab.on span { color: var(--color-on-accent); font-weight: 500; }
+  .card { background: var(--color-card); border-radius: var(--radius-card); padding: var(--space-lg) var(--space-md); margin-bottom: var(--space-sm); }
+  .card h2 { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
   .card .sub { font-size: 12px; color: var(--color-ink-2); margin: var(--space-2xs) 0 var(--space-sm); }
   .ex { border-top: 1px solid var(--color-rule); padding: var(--space-sm) 0; }
   .ex-head { display: flex; justify-content: space-between; align-items: center; }
-  .ex-name { font-size: 14px; font-weight: 500; }
-  .ex-name .star { color: var(--color-accent-deep); font-size: 12px; font-weight: 600; }
-  .ex-sets { font-size: 13px; color: var(--color-muted); font-variant-numeric: tabular-nums; }
-  .inputs { display: flex; gap: var(--space-2xs); margin-top: var(--space-xs); align-items: center; }
-  .inputs input { width: 0; flex: 1; min-width: 40px; padding: 9px 6px; border: 1px solid var(--color-rule); border-radius: var(--radius-input); font-size: 14px; text-align: center; background: var(--color-card); color: var(--color-ink); }
+  .ex-name { font-size: 14px; font-weight: 600; }
+  .ex-name .star { color: var(--color-warn-ink); font-size: 12px; font-weight: 700; }
+  .ex-sets { font-size: 13px; color: var(--color-muted); font-variant-numeric: tabular-nums; font-weight: 500; }
+  .inputs { display: flex; gap: var(--space-xs); margin-top: var(--space-xs); align-items: center; }
+  .inputs input { width: 0; flex: 1; min-width: 40px; padding: 10px 8px; border: 1px solid var(--color-rule); border-radius: var(--radius-pill); font-size: 14px; text-align: center; background: var(--color-paper); color: var(--color-ink); font-variant-numeric: tabular-nums; }
   .inputs input:focus { outline: 2px solid var(--color-focus); outline-offset: 0; border-color: transparent; }
   .inputs .x { color: var(--color-muted); font-size: 12px; }
-  .done-btn { border: 1px solid var(--color-rule); background: var(--color-card); border-radius: var(--radius-input); padding: 8px 12px; font-size: 13px; cursor: pointer; color: var(--color-ink-2); white-space: nowrap; transition: background var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out); }
+  .done-btn { border: 1px solid var(--color-rule); background: transparent; border-radius: var(--radius-pill); padding: 9px 16px; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--color-ink-2); white-space: nowrap; transition: background var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out); }
   .done-btn:hover { background: var(--color-paper-2); }
-  .done-btn.on { background: var(--color-accent); border-color: var(--color-accent); color: oklch(100% 0 0); }
-  .note { background: var(--color-paper-2); border-radius: var(--radius-input); padding: var(--space-sm); font-size: 12px; color: var(--color-ink-2); margin-top: var(--space-sm); line-height: 1.7; }
-  .save-bar { display: flex; gap: var(--space-sm); align-items: center; margin-top: var(--space-sm); }
-  .save-btn { flex: 1; background: var(--color-accent); color: oklch(100% 0 0); border: none; border-radius: var(--radius-input); padding: 13px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background var(--dur-short) var(--ease-out); }
-  .save-btn:hover { background: var(--color-accent-deep); }
+  .done-btn.on { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-on-accent); }
+  .note { background: var(--color-paper-2); border-radius: 16px; padding: var(--space-sm) var(--space-md); font-size: 12px; color: var(--color-ink-2); margin-top: var(--space-sm); line-height: 1.7; }
+  .save-bar { display: flex; gap: var(--space-sm); align-items: center; margin-top: var(--space-md); }
+  .save-btn { flex: 1; background: var(--color-accent); color: var(--color-on-accent); border: none; border-radius: var(--radius-pill); padding: 15px; font-size: 15px; font-weight: 700; cursor: pointer; transition: filter var(--dur-short) var(--ease-out); }
+  .save-btn:hover { filter: brightness(0.95); }
   .save-btn:active { transform: translateY(1px); }
-  .saved-tip { font-size: 13px; color: var(--color-accent-deep); display: none; }
+  .saved-tip { font-size: 13px; font-weight: 600; color: var(--color-ink); display: none; }
   .last { font-size: 12px; color: var(--color-muted); margin-top: var(--space-2xs); font-variant-numeric: tabular-nums; }
-  .section-title { font-size: 15px; font-weight: 650; margin: var(--space-lg) 0 var(--space-sm); }
+  .section-title { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; margin: var(--space-lg) 0 var(--space-sm); }
   .bw-row { display: flex; gap: var(--space-xs); }
-  .bw-row input { flex: 1; min-width: 0; padding: 10px; border: 1px solid var(--color-rule); border-radius: var(--radius-input); font-size: 15px; background: var(--color-card); color: var(--color-ink); }
-  .bw-row button { background: var(--color-accent); color: oklch(100% 0 0); border: none; border-radius: var(--radius-input); padding: 0 18px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background var(--dur-short) var(--ease-out); }
-  .bw-row button:hover { background: var(--color-accent-deep); }
+  .bw-row input { flex: 1; min-width: 0; padding: 11px 14px; border: 1px solid var(--color-rule); border-radius: var(--radius-pill); font-size: 15px; background: var(--color-paper); color: var(--color-ink); font-variant-numeric: tabular-nums; }
+  .bw-row button { background: var(--color-pill); color: var(--color-on-pill); border: none; border-radius: var(--radius-pill); padding: 0 20px; font-size: 14px; font-weight: 700; cursor: pointer; transition: filter var(--dur-short) var(--ease-out); }
+  .bw-row button:hover { filter: brightness(1.15); }
   table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: var(--space-sm); font-variant-numeric: tabular-nums; }
   th { text-align: left; color: var(--color-muted); font-weight: 500; padding: 6px 4px; border-bottom: 1px solid var(--color-rule); }
-  td { padding: 7px 4px; border-bottom: 1px solid var(--color-paper-2); }
-  .trend { font-size: 13px; padding: var(--space-sm); border-radius: var(--radius-input); margin-top: var(--space-sm); line-height: 1.7; }
-  .trend.good { background: var(--color-accent-tint); color: var(--color-accent-deep); }
+  td { padding: 8px 4px; border-bottom: 1px solid var(--color-paper-2); }
+  .trend { font-size: 13px; padding: var(--space-sm) var(--space-md); border-radius: 16px; margin-top: var(--space-sm); line-height: 1.7; }
+  .trend.good { background: var(--color-accent-tint); color: var(--color-ink); }
   .trend.warn { background: var(--color-warn-tint); color: var(--color-warn-ink); }
-  .trend.info { background: var(--color-info-tint); color: var(--color-info-ink); }
+  .trend.info { background: var(--color-paper-2); color: var(--color-ink-2); }
   .del { color: var(--color-danger); cursor: pointer; font-size: 12px; }
   .footer { font-size: 12px; color: var(--color-muted); text-align: center; margin: var(--space-lg) 0 var(--space-sm); line-height: 1.8; }
-  .hist-day { font-size: 13px; margin-top: var(--space-xs); padding: var(--space-sm); background: var(--color-paper-2); border-radius: var(--radius-input); }
-  .hist-day b { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .hist-day { font-size: 13px; margin-top: var(--space-xs); padding: var(--space-sm) var(--space-md); background: var(--color-paper-2); border-radius: 16px; }
+  .hist-day b { font-weight: 700; font-variant-numeric: tabular-nums; }
   .hist-day .d { color: var(--color-ink-2); font-size: 12px; }
   @media (prefers-reduced-motion: reduce) {
     * { transition-duration: 0.01ms !important; }
@@ -154,13 +177,12 @@ const PLAN = [
     { n: '哑铃肩推', s: '3×8–12', log: true },
     { n: '侧平举', s: '3×15', log: false },
     { n: '三头下压', s: '3×10–15', log: false } ] },
-  { name: '背 + 二头', sub: '宽度 + 厚度｜面拉护肩', note: '训练后爬坡 30 分钟｜背练好体态挺，胸看起来更平', ex: [
-    { n: '引体向上 / 高位下拉', s: '4 组', log: true },
-    { n: '高位下拉', s: '4 组', log: true },
-    { n: '杠铃划船', s: '4 组', log: true },
-    { n: '龙门架坐姿划船', s: '3 组', log: false },
-    { n: '面拉 Face Pull', s: '3 组', log: false },
-    { n: '二头弯举', s: '3 组', log: false } ] },
+  { name: '背 + 二头', sub: '宽度 + 厚度｜大重量在前', note: '训练后爬坡 30 分钟｜背练好体态挺，胸看起来更平', ex: [
+    { n: '单臂跪姿高位下拉', s: '4×10–12/侧', log: true },
+    { n: '杠铃划船', s: '4×8–10', log: true },
+    { n: '龙门架坐姿划船', s: '3×10–12', log: true },
+    { n: '单臂直臂下压', s: '3×12–15/侧', log: false },
+    { n: '二头弯举', s: '3×10–12', log: false } ] },
   { name: '腿 + 胸补充', sub: '大肌群消耗｜末尾加练胸', note: '训练后爬坡 30 分钟｜胸第二练：轻重量高质量，做到接近力竭', ex: [
     { n: '杠铃深蹲', s: '4 组', log: true },
     { n: '罗马尼亚硬拉', s: '4 组', log: true },
